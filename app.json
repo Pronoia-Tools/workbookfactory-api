@@ -1,0 +1,22 @@
+{
+    "name": "Workbook Factory API",
+    "description": "The API and business logic for Workbook Factory",
+    "image": "heroku/python",
+    "repository": "https://github.com/al3sha/workbookfactory-api",
+    "keywords": ["python", "django" ],
+    "addons": [ "heroku-postgresql" ],
+    "env": {
+      "SECRET_KEY": {
+        "description": ")$u@um5g@7j3^c@uqmx%li&ycn-=)=x9z*9i*ka_)1f8jlood@",
+        "generator": "secret"
+      }
+    },
+    "environments": {
+      "test": {
+        "scripts": {
+          "test-setup": "python manage.py collectstatic --noinput",
+          "test": "python manage.py test"
+        }
+      }
+    }
+  }
