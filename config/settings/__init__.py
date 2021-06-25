@@ -8,11 +8,11 @@ on the command line, e.g.::
 
 To determine the hostname, run `hostname` from the server's command line.
 """
-import socket
+#import socket
 
-hostname = socket.gethostname()
+#hostname = socket.gethostname()
 
-if hostname == 'workbookfactory':
-    from .production import *
-else:
-    from .local import *
+#if hostname == 'workbookfactory':
+#    from .production import *
+#else:
+#    from .local import *
