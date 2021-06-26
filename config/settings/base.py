@@ -139,8 +139,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, os.pardir, 'static'),
 ]
 
-# STATIC_ROOT = '/Users/dave/sandbox/overwatch-api/static/'
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, os.pardir, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, os.pardir, 'uploads')
 MEDIA_URL = '/uploads/'
