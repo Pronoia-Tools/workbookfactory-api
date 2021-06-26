@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-MIDDLEWARE = [
+MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-]
+)
 
 ROOT_URLCONF = 'config.urls'
 
