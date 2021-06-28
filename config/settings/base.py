@@ -127,7 +127,13 @@ REST_FRAMEWORK = {
 
 
 # CORS
-CORS_ALLOW_ALL_ORIGINS = True
+CORS
+# CORS_ALLOWED_ORIGINS = [
+#    "https://workbookfactory-api.herokuapp.com/",
+#    "https://workbook-factory.herokuapp.com/",
+#    "http://localhost:8000",
+#    "http://127.0.0.1:8000"
+#]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
