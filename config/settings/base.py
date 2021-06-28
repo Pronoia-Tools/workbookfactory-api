@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'allauth.account',
     # 'allauth.socialaccount',
 
+    'corsheaders',
+
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -58,6 +60,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -122,6 +125,9 @@ REST_FRAMEWORK = {
     ],
 }
 
+
+# CORS
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
