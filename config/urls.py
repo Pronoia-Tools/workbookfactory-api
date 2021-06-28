@@ -8,10 +8,11 @@ from django.conf import settings
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 
-from users.api.views import AccountViewSet
+from users.api.views import AccountViewSet, GroupViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'accounts', AccountViewSet, basename="accounts")
+router.register(r'groups', GroupViewSet, basename="groups")
 
 urlpatterns = [
     path("workbook-factory/admin/docs/", include("django.contrib.admindocs.urls")),
