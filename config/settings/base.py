@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount',
 
     'rest_framework',
+    'rest_framework.authtoken',
 
     'config',
     # 'cms',
@@ -108,9 +109,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Allauth settings
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
+
+# Rest Framework Settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
 
 
 # Internationalization
