@@ -127,7 +127,7 @@ REST_FRAMEWORK = {
 
 
 # CORS
-CORS
+CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOWED_ORIGINS = [
 #    "https://workbookfactory-api.herokuapp.com/",
 #    "https://workbook-factory.herokuapp.com/",
