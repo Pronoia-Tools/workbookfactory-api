@@ -9,4 +9,3 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'Optional default value')
 SESSION_CACHE_ALIAS = "default"
 
 DEBUG = True
-ALLOWED_HOSTS = []
