@@ -8,5 +8,5 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'Optional default value')
 
 SESSION_CACHE_ALIAS = "default"
 
-DEBUG = False
-ALLOWED_HOSTS = ['workbookfactory-api.herokuapp.com']
+DEBUG = True
+ALLOWED_HOSTS = []

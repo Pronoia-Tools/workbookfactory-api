@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL = "users.Account"
 LOGIN_URL = '/accounts/login/'
-ADMIN_URL = "workbook-factory/admin/"
+ADMIN_URL = "/workbook-factory/admin/"
 # LOGIN_REDIRECT_URL = "/app/"
 
 DATE_FORMAT = "d/m/Y"
