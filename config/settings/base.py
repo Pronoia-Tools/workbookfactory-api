@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # 'cms',
     'users',
     'utils',
+    'workbooks',
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
