@@ -1,3 +1,4 @@
+from workbooks.models import Answer
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
@@ -9,7 +10,7 @@ from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 
 from users.api.views import AccountViewSet, GroupViewSet
-from workbooks.api.views import WorkbookViewSet, ChapterViewSet, PageViewSet
+from workbooks.api.views import WorkbookViewSet, ChapterViewSet, PageViewSet, QuestionViewSet, AnswerViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'accounts', AccountViewSet, basename="accounts")
@@ -17,6 +18,8 @@ router.register(r'groups', GroupViewSet, basename="groups")
 router.register(r'workbooks', WorkbookViewSet, basename="workbooks")
 router.register(r'chapters', ChapterViewSet, basename="chapters")
 router.register(r'pages', PageViewSet, basename="pages")
+router.register(r'questions', QuestionViewSet, basename="questions")
+router.register(r'answers', AnswerViewSet, basename="answers")
 
 urlpatterns = [
     path("workbook-factory/admin/docs/", include("django.contrib.admindocs.urls")),

@@ -4,7 +4,7 @@ from rest_framework import permissions
 from rest_framework import viewsets
 from rest_framework import filters
 
-from ..models import Workbook, Chapter, Page
+from ..models import Workbook, Chapter, Page, Question, Answer
 from . import serializers
 
 class WorkbookViewSet(viewsets.ModelViewSet):
@@ -35,6 +35,30 @@ class PageViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'content',]
+
+    # this will associate the owner of the object with the session user
+    # def perform_create(self, serializer):
+    #    serializer.save(owner=self.request.user)
+
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = serializers.QuestionSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['question',]
+
+    # this will associate the owner of the object with the session user
+    # def perform_create(self, serializer):
+    #    serializer.save(owner=self.request.user)
+
+
+class AnswerViewSet(viewsets.ModelViewSet):
+    queryset = Answer.objects.all()
+    serializer_class = serializers.AnswerSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['answer',]
 
     # this will associate the owner of the object with the session user
     # def perform_create(self, serializer):
