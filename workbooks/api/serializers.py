@@ -1,13 +1,20 @@
 from rest_framework import serializers
-from django.contrib.auth.models import Group
-from ..models import Workbook, Chapter
+from ..models import Workbook, Chapter, Page
+
+
+class PageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Page
+        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified']
 
 
 class ChapterSerializer(serializers.ModelSerializer):
+    page_set = PageSerializer(many=True)
 
     class Meta:
         model = Chapter
-        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified']
+        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'page_set']
 
 
 class WorkbookSerializer(serializers.ModelSerializer):
