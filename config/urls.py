@@ -11,6 +11,7 @@ from rest_framework_simplejwt import views as jwt_views
 
 from users.api.views import AccountViewSet, GroupViewSet
 from workbooks.api.views import WorkbookViewSet, ChapterViewSet, PageViewSet, QuestionViewSet, AnswerViewSet
+from orders.api.views import OrderViewSet, OrderItemViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'accounts', AccountViewSet, basename="accounts")
@@ -20,6 +21,8 @@ router.register(r'chapters', ChapterViewSet, basename="chapters")
 router.register(r'pages', PageViewSet, basename="pages")
 router.register(r'questions', QuestionViewSet, basename="questions")
 router.register(r'answers', AnswerViewSet, basename="answers")
+router.register(r'orders', OrderViewSet, basename="orders")
+router.register(r'order-items', OrderItemViewSet, basename="order-items")
 
 urlpatterns = [
     path("workbook-factory/admin/docs/", include("django.contrib.admindocs.urls")),

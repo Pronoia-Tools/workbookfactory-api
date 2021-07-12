@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     'config',
     # 'cms',
+    'orders',
     'users',
     'utils',
     'workbooks',
