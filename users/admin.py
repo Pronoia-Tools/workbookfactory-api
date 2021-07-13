@@ -83,6 +83,15 @@ class AccountAdmin(UserAdmin):
     fieldsets = (
         (None, {"fields": ("username", "email", "password")}),
         (
+            _("Information"),
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                )
+            },
+        ),
+        (
             _("Permissions"),
             {
                 "fields": (
