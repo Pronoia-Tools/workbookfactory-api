@@ -24,7 +24,6 @@ django-modelcluster==5.1
 django-on-heroku==1.1.2
 django-recaptcha==2.0.6
 django-redis==5.0.0
-django-rest-auth==0.9.5
 django-storages==1.11.1
 django-taggit==1.4.0
 django-treebeard==4.5.1

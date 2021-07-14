@@ -137,7 +137,11 @@ REST_FRAMEWORK = {
 }
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'users.api.serializers.AccountSerializer'
+    'USER_DETAILS_SERIALIZER': 'users.api.serializers.AccountSerializer',
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZERS': 'users.api.serializers.WFRegisterSerializer',
 }
 
 
@@ -150,8 +154,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 #    "http://127.0.0.1:8000"
 #]
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
