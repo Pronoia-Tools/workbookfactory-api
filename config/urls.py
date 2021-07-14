@@ -8,6 +8,7 @@ from django.conf import settings
 
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
+from dj_rest_auth.registration.views import VerifyEmailView
 
 from users.api.views import AccountViewSet, GroupViewSet
 from workbooks.api.views import WorkbookViewSet, ChapterViewSet, PageViewSet, QuestionViewSet, AnswerViewSet
@@ -37,6 +38,7 @@ urlpatterns += [
     
     path('api/rest-auth/', include('dj_rest_auth.urls')),
     path('api/rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/rest-auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent'),
 
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
 
