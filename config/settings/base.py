@@ -42,12 +42,15 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
-    # 'allauth.socialaccount',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 
     'corsheaders',
 
     'rest_framework',
     'rest_framework.authtoken',
+
+    'dj_rest_auth',
 
     'config',
     # 'cms',
@@ -115,9 +118,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Allauth settings
 ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
+
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'workbookfactory-auth'
+JWT_AUTH_REFRESH_COOKIE = 'workbookfactory-refresh-token'
 
 # Rest Framework Settings
 REST_FRAMEWORK = {
@@ -126,6 +134,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+}
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'users.api.serializers.AccountSerializer'
 }
 
 

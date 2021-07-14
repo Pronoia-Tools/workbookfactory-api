@@ -38,4 +38,4 @@ class WorkbookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Workbook
-        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'chapter_set']
+        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'chapter_set', 'published', 'editable']

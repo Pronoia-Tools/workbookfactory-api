@@ -9,6 +9,8 @@ class Workbook(Core):
     front_matter = models.TextField(blank=True)
     back_matter = models.TextField(blank=True)
     content = models.TextField(blank=True)
+    published = models.BooleanField(default=False)
+    editable = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         value = self.title
