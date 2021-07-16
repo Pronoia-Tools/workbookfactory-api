@@ -7,6 +7,7 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from django.utils.functional import cached_property
+from django_countries.fields import CountryField
 from allauth.account.models import EmailAddress
 from .managers import AccountManager
 
@@ -21,6 +22,7 @@ class Account(AbstractBaseUser, Core, PermissionsMixin):
     email = models.EmailField(db_index=True, unique=True)
     first_name = models.CharField(null=True, blank=True, max_length=50)
     last_name = models.CharField(null=True, blank=True, max_length=50)
+    country = CountryField(blank_label='(Select Country)', blank=True, null=True)
     opt_in = models.BooleanField(default=False, verbose_name="Add me to the Workbook Factory email list", help_text="Don't worry, we won't spam you.")
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

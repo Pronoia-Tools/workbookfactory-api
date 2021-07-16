@@ -40,17 +40,18 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
-
-    'corsheaders',
-
     'rest_framework',
     'rest_framework.authtoken',
 
     'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'dj_rest_auth.registration',
+    'allauth.socialaccount',
+
+    'corsheaders',
+
+    'django_countries',
 
     'config',
     # 'cms',
@@ -141,7 +142,7 @@ REST_AUTH_SERIALIZERS = {
 }
 
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZERS': 'users.api.serializers.WFRegisterSerializer',
+    'REGISTER_SERIALIZER': 'users.api.serializers.CustomRegisterSerializer',
 }
 
 

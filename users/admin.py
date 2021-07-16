@@ -88,6 +88,7 @@ class AccountAdmin(UserAdmin):
                 "fields": (
                     "first_name",
                     "last_name",
+                    "country",
                 )
             },
         ),
