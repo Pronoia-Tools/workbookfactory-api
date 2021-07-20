@@ -13,8 +13,8 @@ DEBUG = True
 ADMINS = [('Dave Merwin', 'dave@purebluedesign.com'), ]
 DEFAULT_FROM_EMAIL = 'dave@purebluedesign.com'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'dave@purebluedesign.com'
-EMAIL_HOST_PASSWORD = 'euzzvdprkcggqfnj'
-EMAIL_PORT = 587
+EMAIL_HOST = 'nameserver1.bluehost.com'
+EMAIL_HOST_USER = 'Sammy@WorkbookFactory.io'
+EMAIL_HOST_PASSWORD = 'bui!bcR=!oT['
+EMAIL_PORT = 995
 EMAIL_USE_TLS = True
