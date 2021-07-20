@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Workbook, Chapter, Page, Question, Answer
+from ..models import Workbook, Chapter, Question, Answer
 
 
 class AnswerSerializer(serializers.ModelSerializer):
@@ -17,20 +17,12 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = ['id', 'owner', 'question', 'archived', 'created', 'modified', 'answer_set']
 
 
-class PageSerializer(serializers.ModelSerializer):
+class ChapterSerializer(serializers.ModelSerializer):
     question_set = QuestionSerializer(many=True)
 
     class Meta:
-        model = Page
-        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'question_set']
-
-
-class ChapterSerializer(serializers.ModelSerializer):
-    page_set = PageSerializer(many=True)
-
-    class Meta:
         model = Chapter
-        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'page_set']
+        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'question_set']
 
 
 class WorkbookSerializer(serializers.ModelSerializer):

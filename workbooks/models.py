@@ -45,30 +45,9 @@ class Chapter(Core):
         verbose_name_plural = "Chapters"
 
 
-class Page(Core):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, default='', blank=True)
-    front_matter = models.TextField(blank=True)
-    back_matter = models.TextField(blank=True)
-    content = models.TextField(blank=True)
-    chapter = models.ManyToManyField('Chapter', blank=True)
-
-    def save(self, *args, **kwargs):
-        value = self.title
-        self.slug = slugify(value, allow_unicode=True)
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = "Page"
-        verbose_name_plural = "Pages"
-
-
 class Question(Core):
     question = models.CharField(max_length=200)
-    page = models.ManyToManyField('Page', blank=True)
+    chapter = models.ManyToManyField('Chapter', blank=True)
 
     def __str__(self):
         return self.question

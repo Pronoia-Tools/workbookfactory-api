@@ -11,7 +11,7 @@ from rest_framework_simplejwt import views as jwt_views
 from dj_rest_auth.registration.views import VerifyEmailView
 
 from users.api.views import AccountViewSet, GroupViewSet
-from workbooks.api.views import WorkbookViewSet, ChapterViewSet, PageViewSet, QuestionViewSet, AnswerViewSet
+from workbooks.api.views import WorkbookViewSet, ChapterViewSet, QuestionViewSet, AnswerViewSet
 from orders.api.views import OrderViewSet, OrderItemViewSet
 from coaches.api.views import CoachViewSet
 
@@ -20,7 +20,6 @@ router.register(r'accounts', AccountViewSet, basename="accounts")
 router.register(r'groups', GroupViewSet, basename="groups")
 router.register(r'workbooks', WorkbookViewSet, basename="workbooks")
 router.register(r'chapters', ChapterViewSet, basename="chapters")
-router.register(r'pages', PageViewSet, basename="pages")
 router.register(r'questions', QuestionViewSet, basename="questions")
 router.register(r'answers', AnswerViewSet, basename="answers")
 router.register(r'orders', OrderViewSet, basename="orders")
