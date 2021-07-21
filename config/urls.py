@@ -36,7 +36,7 @@ urlpatterns += [
 
     path('api/rest-auth/password-reset/confirm/',
         TemplateView.as_view(template_name="account/password_reset_confirm.html"),
-        name='password-reset-confirm'),
+        name='password_reset_confirm'),
 
     path('api/auth/', include('rest_framework.urls')),
     
