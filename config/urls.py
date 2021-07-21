@@ -34,7 +34,7 @@ urlpatterns = [
 
 urlpatterns += [
 
-    path('api/rest-auth/password/reset/confirm/',
+    path('api/rest-auth/password/reset/confirm/<uidb64>/<token>/',
         TemplateView.as_view(template_name="password_reset_confirm.html"),
         name='password_reset_confirm'),
 
