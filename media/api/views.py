@@ -14,8 +14,8 @@ class ImageViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     # this will associate the owner of the object with the session user
-    # def perform_create(self, serializer):
-    #    serializer.save(owner=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 class EmbedViewSet(viewsets.ModelViewSet):
     queryset = Embed.objects.all()
@@ -23,5 +23,5 @@ class EmbedViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     # this will associate the owner of the object with the session user
-    # def perform_create(self, serializer):
-    #    serializer.save(owner=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
