@@ -5,6 +5,7 @@ from django_countries.serializer_fields import CountryField
 from django.contrib.auth.models import Group
 from users.models import Account
 
+
 from dj_rest_auth.registration.serializers import RegisterSerializer
 
 
