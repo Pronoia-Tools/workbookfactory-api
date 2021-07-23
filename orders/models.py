@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from djmoney.models.fields import MoneyField
 from utils.models import Core
 
 # Create your models here.
@@ -22,7 +23,7 @@ class Order(Core):
 
 class OrderItem(Core):
     order = models.ForeignKey("Order", on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = MoneyField(max_digits=14, decimal_places=2, default_currency='USD')
     quantity = models.IntegerField(default=0)
 
     def __str__(self):
