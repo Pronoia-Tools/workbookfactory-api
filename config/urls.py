@@ -9,6 +9,7 @@ from django.conf import settings
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 from dj_rest_auth.registration.views import VerifyEmailView
+from wagtail.admin import urls as wagtailadmin_urls
 
 from users.api.views import AccountViewSet, GroupViewSet
 from workbooks.api.views import WorkbookViewSet, ChapterViewSet, QuestionViewSet, AnswerViewSet
@@ -32,6 +33,7 @@ router.register(r'embeds', EmbedViewSet, basename="embeds")
 urlpatterns = [
     path("workbook-factory/admin/docs/", include("django.contrib.admindocs.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
+    path("workbook-factory/cms/", include(wagtailadmin_urls))
 ]
 
 
