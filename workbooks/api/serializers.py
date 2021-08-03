@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from djmoney.contrib.django_rest_framework import MoneyField
+from users.api.serializers import AccountSerializer
 from ..models import Workbook, Chapter, Question, Answer
 
 
 class AnswerSerializer(serializers.ModelSerializer):
+    owner = AccountSerializer(read_only=True)
 
     class Meta:
         model = Answer
@@ -11,6 +13,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
+    owner = AccountSerializer(read_only=True)
     answer_set = AnswerSerializer(many=True, required=False)
 
     class Meta:
@@ -19,6 +22,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class ChapterSerializer(serializers.ModelSerializer):
+    owner = AccountSerializer(read_only=True)
     question_set = QuestionSerializer(many=True, required=False)
 
     class Meta:
@@ -27,6 +31,7 @@ class ChapterSerializer(serializers.ModelSerializer):
 
 
 class WorkbookSerializer(serializers.ModelSerializer):
+    owner = AccountSerializer(read_only=True)
     chapter_set = ChapterSerializer(many=True, required=False)
     price = MoneyField(max_digits=10, decimal_places=2)
 
