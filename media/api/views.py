@@ -12,6 +12,8 @@ class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = serializers.ImageSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['owner__id', 'title',]
 
     # this will associate the owner of the object with the session user
     def perform_create(self, serializer):
@@ -21,6 +23,8 @@ class EmbedViewSet(viewsets.ModelViewSet):
     queryset = Embed.objects.all()
     serializer_class = serializers.EmbedSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['owner__id', 'title',]
 
     # this will associate the owner of the object with the session user
     def perform_create(self, serializer):

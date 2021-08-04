@@ -12,22 +12,22 @@ class WorkbookViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.WorkbookSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'content',]
+    search_fields = ['owner__id', 'title', 'content',]
 
     # this will associate the owner of the object with the session user
-    # def perform_create(self, serializer):
-    #    serializer.save(owner=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 class ChapterViewSet(viewsets.ModelViewSet):
     queryset = Chapter.objects.all()
     serializer_class = serializers.ChapterSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'content',]
+    search_fields = ['owner__id', 'title', 'content',]
 
     # this will associate the owner of the object with the session user
-    # def perform_create(self, serializer):
-    #    serializer.save(owner=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -35,11 +35,11 @@ class QuestionViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.QuestionSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
-    search_fields = ['question',]
+    search_fields = ['owner__id', 'question',]
 
     # this will associate the owner of the object with the session user
-    # def perform_create(self, serializer):
-    #    serializer.save(owner=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class AnswerViewSet(viewsets.ModelViewSet):
@@ -47,8 +47,8 @@ class AnswerViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.AnswerSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
-    search_fields = ['answer',]
+    search_fields = ['owner__id', 'answer',]
 
     # this will associate the owner of the object with the session user
-    # def perform_create(self, serializer):
-    #    serializer.save(owner=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
