@@ -4,10 +4,21 @@ from rest_framework import permissions
 from rest_framework import viewsets
 from rest_framework import filters
 
+from utils import permissions as wf_permissions
+
 from ..models import Workbook, Chapter, Question, Answer
 from . import serializers
 
-class WorkbookViewSet(viewsets.ModelViewSet):
+
+class PublicWorkbookViewSet(viewsets.ModelViewSet):
+    queryset = Workbook.objects.all()
+    serializer_class = serializers.WorkbookSerializer
+    permission_classes = [wf_permissions.ReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['owner__id', 'title', 'content',]
+
+
+class OwnerWorkbookViewSet(viewsets.ModelViewSet):
     queryset = Workbook.objects.all()
     serializer_class = serializers.WorkbookSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -23,7 +34,16 @@ class WorkbookViewSet(viewsets.ModelViewSet):
         owner_queryset = self.queryset.filter(owner=self.request.user)
         return owner_queryset
 
-class ChapterViewSet(viewsets.ModelViewSet):
+
+class PublicChapterViewSet(viewsets.ModelViewSet):
+    queryset = Chapter.objects.all()
+    serializer_class = serializers.ChapterSerializer
+    permission_classes = [wf_permissions.ReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['owner__id', 'title', 'content',]
+
+
+class OwnerChapterViewSet(viewsets.ModelViewSet):
     queryset = Chapter.objects.all()
     serializer_class = serializers.ChapterSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -40,7 +60,15 @@ class ChapterViewSet(viewsets.ModelViewSet):
         return owner_queryset
 
 
-class QuestionViewSet(viewsets.ModelViewSet):
+class PublicQuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = serializers.QuestionSerializer
+    permission_classes = [wf_permissions.ReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['owner__id', 'question',]
+
+
+class OwnerQuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = serializers.QuestionSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -57,7 +85,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
         return owner_queryset
 
 
-class AnswerViewSet(viewsets.ModelViewSet):
+class OwnerAnswerViewSet(viewsets.ModelViewSet):
     queryset = Answer.objects.all()
     serializer_class = serializers.AnswerSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]

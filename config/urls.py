@@ -12,23 +12,26 @@ from dj_rest_auth.registration.views import VerifyEmailView
 from wagtail.admin import urls as wagtailadmin_urls
 
 from users.api.views import AccountViewSet, GroupViewSet
-from workbooks.api.views import WorkbookViewSet, ChapterViewSet, QuestionViewSet, AnswerViewSet
+from workbooks.api.views import PublicWorkbookViewSet, OwnerWorkbookViewSet, PublicChapterViewSet, OwnerChapterViewSet, PublicQuestionViewSet, OwnerQuestionViewSet, OwnerAnswerViewSet
 from orders.api.views import OrderViewSet, OrderItemViewSet
 from coaches.api.views import CoachViewSet
-from media.api.views import EmbedViewSet, ImageViewSet
+from media.api.views import OwnerEmbedViewSet, OwnerImageViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'accounts', AccountViewSet, basename="accounts")
 router.register(r'groups', GroupViewSet, basename="groups")
-router.register(r'workbooks', WorkbookViewSet, basename="workbooks")
-router.register(r'chapters', ChapterViewSet, basename="chapters")
-router.register(r'questions', QuestionViewSet, basename="questions")
-router.register(r'answers', AnswerViewSet, basename="answers")
+router.register(r'public/workbooks', PublicWorkbookViewSet, basename="public-workbooks")
+router.register(r'public/chapters', PublicChapterViewSet, basename="public-chapters")
+router.register(r'public/questions', PublicQuestionViewSet, basename="public-questions")
+router.register(r'workbooks', OwnerWorkbookViewSet, basename="workbooks")
+router.register(r'chapters', OwnerChapterViewSet, basename="chapters")
+router.register(r'questions', OwnerQuestionViewSet, basename="questions")
+router.register(r'answers', OwnerAnswerViewSet, basename="answers")
 router.register(r'orders', OrderViewSet, basename="orders")
 router.register(r'order-items', OrderItemViewSet, basename="order-items")
 router.register(r'coaches', CoachViewSet, basename="coaches")
-router.register(r'images', ImageViewSet, basename="images")
-router.register(r'embeds', EmbedViewSet, basename="embeds")
+router.register(r'images', OwnerImageViewSet, basename="images")
+router.register(r'embeds', OwnerEmbedViewSet, basename="embeds")
 
 urlpatterns = [
     path("workbook-factory/admin/docs/", include("django.contrib.admindocs.urls")),

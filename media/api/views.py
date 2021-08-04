@@ -8,7 +8,7 @@ from ..models import Image, Embed
 from . import serializers
 
 
-class ImageViewSet(viewsets.ModelViewSet):
+class OwnerImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = serializers.ImageSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -24,7 +24,7 @@ class ImageViewSet(viewsets.ModelViewSet):
         owner_queryset = self.queryset.filter(owner=self.request.user)
         return owner_queryset
 
-class EmbedViewSet(viewsets.ModelViewSet):
+class OwnerEmbedViewSet(viewsets.ModelViewSet):
     queryset = Embed.objects.all()
     serializer_class = serializers.EmbedSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
