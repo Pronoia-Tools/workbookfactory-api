@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'config',
     # 'cms',
     'coaches',
+    'libraries',
     'media',
     'orders',
     'users',

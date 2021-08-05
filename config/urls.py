@@ -16,6 +16,7 @@ from workbooks.api.views import PublicWorkbookViewSet, OwnerWorkbookViewSet, Pub
 from orders.api.views import OrderViewSet, OrderItemViewSet
 from coaches.api.views import CoachViewSet
 from media.api.views import OwnerEmbedViewSet, OwnerImageViewSet
+from libraries.api.views import LibraryViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'accounts', AccountViewSet, basename="accounts")
@@ -32,6 +33,7 @@ router.register(r'order-items', OrderItemViewSet, basename="order-items")
 router.register(r'coaches', CoachViewSet, basename="coaches")
 router.register(r'images', OwnerImageViewSet, basename="images")
 router.register(r'embeds', OwnerEmbedViewSet, basename="embeds")
+router.register(r'libraries', LibraryViewSet, basename="libraries")
 
 urlpatterns = [
     path("workbook-factory/admin/docs/", include("django.contrib.admindocs.urls")),
