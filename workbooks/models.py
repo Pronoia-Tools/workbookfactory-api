@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django_countries.fields import CountryField
 from djmoney.models.fields import MoneyField
+from taggit.managers import TaggableManager
 from utils.models import Core
 
 # Create your models here.
@@ -17,6 +18,7 @@ class Workbook(Core):
     edition = models.IntegerField(default=1)
     description = models.TextField(blank=True, null=True)
     price = MoneyField(max_digits=10, decimal_places=2, default_currency='USD', null=True)
+    tags = TaggableManager()
     
 
     def save(self, *args, **kwargs):
