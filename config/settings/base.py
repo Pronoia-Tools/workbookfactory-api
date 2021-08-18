@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'taggit_serializer',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -126,7 +127,6 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
 
-
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'workbookfactory-auth'
 JWT_AUTH_REFRESH_COOKIE = 'workbookfactory-refresh-token'
@@ -199,5 +199,18 @@ WAGTAIL_SITE_NAME = 'Workbook Factory'
 # PASSWORD_REQUIRED_TEMPLATE = 'account/login.html'
 WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login/'
 
+# AWS Credentials
+AWS_ACCESS_KEY_ID = 'AKIAYDJD6YIFEEELVONY'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'workbook-factory-dev'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_ENDPOINT_URL = 'https://s3.us-east-2.amazonaws.com'
+
+S3DIRECT_DESTINATIONS = {
+    'primary_destination': {
+        'key': 'uploads/',
+        'allowed': ['image/jpg', 'image/jpeg', 'image/png', 'video/mp4'],
+    }
+}
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())

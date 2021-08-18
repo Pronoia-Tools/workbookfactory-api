@@ -3,6 +3,8 @@ from django.utils.text import slugify
 from django_countries.fields import CountryField
 from djmoney.models.fields import MoneyField
 from taggit.managers import TaggableManager
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill, Transpose
 from utils.models import Core
 
 # Create your models here.
@@ -19,8 +21,22 @@ class Workbook(Core):
     description = models.TextField(blank=True, null=True)
     price = MoneyField(max_digits=10, decimal_places=2, default_currency='USD', null=True)
     tags = TaggableManager()
+    cover_image = models.ImageField(upload_to="images", null=True)
+    cover_image_thumbnail = ImageSpecField(source='cover_image',
+                                           processors=[
+                                               Transpose(),
+                                               ResizeToFill(150, 150)
+                                            ],
+                                           format='JPEG',
+                                           options={'quality': 40})
+    cover_image_card = ImageSpecField(source='cover_image',
+                                            processors=[
+                                                Transpose(),
+                                                ResizeToFill(512, 512)
+                                            ],
+                                            format='JPEG',
+                                            options={'quality': 60})
     
-
     def save(self, *args, **kwargs):
         value = self.title
         self.slug = slugify(value, allow_unicode=True)

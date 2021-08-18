@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from djmoney.contrib.django_rest_framework import MoneyField
-from taggit.serializers import (TagListSerializerField,
-                                TaggitSerializer)
+from taggit_serializer.serializers import (TagListSerializerField,
+                                           TaggitSerializer)
 from users.api.serializers import AccountSerializer
 from ..models import Workbook, Chapter, Question, Answer
 
@@ -37,7 +37,38 @@ class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):
     owner = AccountSerializer(read_only=True)
     chapter_set = ChapterSerializer(many=True, required=False)
     price = MoneyField(max_digits=10, decimal_places=2)
+    cover_image_thumbnail_url = serializers.SerializerMethodField('get_cover_image_thumbnail')
+    cover_image_card_url = serializers.SerializerMethodField('get_cover_image_card')
 
     class Meta:
         model = Workbook
-        fields = ['id', 'owner', 'title', 'tags', 'price', 'edition', 'language', 'description', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'chapter_set', 'published', 'editable']
+        fields = [
+            'id', 
+            'owner', 
+            'title', 
+            'tags', 
+            'price', 
+            'edition', 
+            'language', 
+            'description',
+            'slug',
+            'front_matter',
+            'back_matter',
+            'content',
+            'archived',
+            'created',
+            'modified',
+            'chapter_set',
+            'published',
+            'editable',
+            'cover_image_thumbnail_url',
+            'cover_image_card_url'
+        ]
+
+    def get_cover_image_thumbnail(self, obj):
+        if obj.cover_image_thumbnail:
+            return obj.cover_image_thumbnail
+
+    def get_cover_image_card(self, obj):
+        if obj.cover_image_thumbnail:
+            return obj.cover_image_thumbnail
