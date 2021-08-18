@@ -58,12 +58,12 @@ class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):
             'archived',
             'created',
             'modified',
-            'chapter_set',
             'published',
             'editable',
             'cover_image',
             'cover_image_thumbnail_url',
-            'cover_image_card_url'
+            'cover_image_card_url',
+            'chapter_set',
         ]
 
     def get_cover_image_thumbnail(self, obj):

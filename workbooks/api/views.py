@@ -1,7 +1,7 @@
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import permissions
-from rest_framework import viewsets
+from rest_framework import viewsets, parsers
 from rest_framework import filters
 
 from utils import permissions as wf_permissions
@@ -22,6 +22,7 @@ class OwnerWorkbookViewSet(viewsets.ModelViewSet):
     queryset = Workbook.objects.all()
     serializer_class = serializers.WorkbookSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    parser_classes = [parsers.MultiPartParser, parsers.FormParser]
     filter_backends = [filters.SearchFilter]
     search_fields = ['owner__id', 'title', 'content',]
 

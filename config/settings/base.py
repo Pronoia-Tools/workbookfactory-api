@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     'users',
     'utils',
     'workbooks',
+
+    'storages'
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
@@ -204,13 +206,14 @@ AWS_ACCESS_KEY_ID = 'AKIAYDJD6YIFEEELVONY'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'workbook-factory-dev'
 AWS_S3_REGION_NAME = 'us-east-2'
-AWS_S3_ENDPOINT_URL = 'https://s3.us-east-2.amazonaws.com'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
+AWS_DEFAULT_ACL = 'public-read'
 
-S3DIRECT_DESTINATIONS = {
-    'primary_destination': {
-        'key': 'uploads/',
-        'allowed': ['image/jpg', 'image/jpeg', 'image/png', 'video/mp4'],
-    }
-}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())
