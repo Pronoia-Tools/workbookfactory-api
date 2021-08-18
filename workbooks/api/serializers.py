@@ -61,14 +61,15 @@ class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):
             'chapter_set',
             'published',
             'editable',
+            'cover_image',
             'cover_image_thumbnail_url',
             'cover_image_card_url'
         ]
 
     def get_cover_image_thumbnail(self, obj):
         if obj.cover_image_thumbnail:
-            return obj.cover_image_thumbnail
+            return obj.cover_image_thumbnail.url
 
     def get_cover_image_card(self, obj):
         if obj.cover_image_thumbnail:
-            return obj.cover_image_thumbnail
+            return obj.cover_image_thumbnail.url

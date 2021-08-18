@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.utils.text import slugify
 from django_countries.fields import CountryField
@@ -48,6 +49,13 @@ class Workbook(Core):
     class Meta:
         verbose_name = "Workbook"
         verbose_name_plural = "Workbooks"
+
+    def filename(self):
+        return os.path.basename(self.image.name)
+    
+    def __str__(self):
+        return self.title
+
 
 class Chapter(Core):
     title = models.CharField(max_length=200)
