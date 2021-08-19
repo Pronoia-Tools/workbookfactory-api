@@ -37,8 +37,8 @@ class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):
     owner = AccountSerializer(read_only=True)
     chapter_set = ChapterSerializer(many=True, required=False)
     price = MoneyField(max_digits=10, decimal_places=2)
-    cover_image_thumbnail_url = serializers.SerializerMethodField('get_cover_image_thumbnail')
-    cover_image_card_url = serializers.SerializerMethodField('get_cover_image_card')
+    # cover_image_thumbnail_url = serializers.SerializerMethodField('get_cover_image_thumbnail')
+    # cover_image_card_url = serializers.SerializerMethodField('get_cover_image_card')
 
     class Meta:
         model = Workbook
@@ -61,15 +61,15 @@ class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):
             'published',
             'editable',
             'cover_image',
-            'cover_image_thumbnail_url',
-            'cover_image_card_url',
+            # 'cover_image_thumbnail_url',
+            # 'cover_image_card_url',
             'chapter_set',
         ]
 
-    def get_cover_image_thumbnail(self, obj):
-        if obj.cover_image_thumbnail:
-            return obj.cover_image_thumbnail.url
+    # def get_cover_image_thumbnail(self, obj):
+    #     if obj.cover_image_thumbnail:
+    #         return obj.cover_image_thumbnail.url
 
-    def get_cover_image_card(self, obj):
-        if obj.cover_image_thumbnail:
-            return obj.cover_image_thumbnail.url
+    # def get_cover_image_card(self, obj):
+    #     if obj.cover_image_thumbnail:
+    #         return obj.cover_image_thumbnail.url

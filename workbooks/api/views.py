@@ -3,9 +3,10 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework import viewsets, parsers
 from rest_framework import filters
+from rest_framework.views import APIView
 
 from utils import permissions as wf_permissions
-
+from utils.parsers import MultipartJsonParser
 from ..models import Workbook, Chapter, Question, Answer
 from . import serializers
 
@@ -22,7 +23,7 @@ class OwnerWorkbookViewSet(viewsets.ModelViewSet):
     queryset = Workbook.objects.all()
     serializer_class = serializers.WorkbookSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    parser_classes = [parsers.MultiPartParser, parsers.FormParser]
+    parser_classes = [MultipartJsonParser, parsers.JSONParser]
     filter_backends = [filters.SearchFilter]
     search_fields = ['owner__id', 'title', 'content',]
 

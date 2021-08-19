@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'users',
     'utils',
     'workbooks',
+    'imagekit',
 
     'storages'
 ]
@@ -213,7 +214,7 @@ AWS_S3_VERIFY = True
 AWS_DEFAULT_ACL = 'public-read'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())
