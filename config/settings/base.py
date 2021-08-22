@@ -39,7 +39,6 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
-    'taggit_serializer',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -66,7 +65,8 @@ INSTALLED_APPS = [
     'workbooks',
     'imagekit',
 
-    'storages'
+    'storages',
+    'rest_framework_nested'
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

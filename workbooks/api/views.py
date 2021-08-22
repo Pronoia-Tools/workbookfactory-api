@@ -36,7 +36,6 @@ class OwnerWorkbookViewSet(viewsets.ModelViewSet):
         owner_queryset = self.queryset.filter(owner=self.request.user)
         return owner_queryset
 
-
 class PublicChapterViewSet(viewsets.ModelViewSet):
     queryset = Chapter.objects.all()
     serializer_class = serializers.ChapterSerializer
@@ -49,17 +48,16 @@ class OwnerChapterViewSet(viewsets.ModelViewSet):
     queryset = Chapter.objects.all()
     serializer_class = serializers.ChapterSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['owner__id', 'title', 'content',]
+    # filter_backends = [filters.SearchFilter]
+
 
     # this will associate the owner of the object with the session user
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(workbook_id=self.kwargs['workbook_pk'])
 
     def get_queryset(self):
-        # after get all products on DB it will be filtered by its owner and return the queryset
-        owner_queryset = self.queryset.filter(owner=self.request.user)
-        return owner_queryset
+        chapter_queryset = self.queryset.filter(workbook=self.kwargs['workbook_pk'])
+        return chapter_queryset
 
 
 class PublicQuestionViewSet(viewsets.ModelViewSet):

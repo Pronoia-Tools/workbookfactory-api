@@ -24,12 +24,9 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class ChapterSerializer(serializers.ModelSerializer):
-    owner = AccountSerializer(read_only=True)
-    question_set = QuestionSerializer(many=True, required=False)
-
     class Meta:
         model = Chapter
-        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'question_set']
+        fields = ['id', 'content', 'workbook_id']
 
 
 class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):

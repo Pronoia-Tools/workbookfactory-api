@@ -7,6 +7,7 @@ from taggit.managers import TaggableManager
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, Transpose
 from utils.models import Core
+from django.utils.functional import cached_property
 
 # Create your models here.
 class Workbook(Core):
@@ -57,13 +58,14 @@ class Workbook(Core):
         return self.title
 
 
-class Chapter(Core):
+class Chapter(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, default='', blank=True)
-    front_matter = models.TextField(blank=True)
-    back_matter = models.TextField(blank=True)
     content = models.TextField(blank=True)
-    workbook = models.ManyToManyField('Workbook', blank=True)
+    workbook = models.ForeignKey(Workbook, on_delete=models.CASCADE, null=False)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True)
+    archived = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         value = self.title
@@ -76,6 +78,15 @@ class Chapter(Core):
     class Meta:
         verbose_name = "Chapter"
         verbose_name_plural = "Chapters"
+
+    @cached_property
+    def formatted_created(self):
+        return self.created.strftime("%m/%d/%y %I:%M %p")
+
+    @cached_property
+    def formatted_modified(self):
+        if self.modified:
+            return self.modified.strftime("%m/%d/%y %I:%M %p")
 
 
 class Question(Core):
