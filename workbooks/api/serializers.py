@@ -26,7 +26,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
-        fields = ['id', 'content', 'workbook_id']
+        fields = ['id', 'title', 'content', 'workbook_id']
 
 
 class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):

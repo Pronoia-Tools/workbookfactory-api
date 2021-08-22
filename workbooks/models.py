@@ -15,7 +15,7 @@ class Workbook(Core):
     slug = models.SlugField(max_length=200, default='', blank=True)
     front_matter = models.TextField(blank=True)
     back_matter = models.TextField(blank=True)
-    content = models.TextField(blank=True)
+    content = models.JSONField(blank=True, default={})
     published = models.BooleanField(default=False)
     editable = models.BooleanField(default=False)
     language = models.CharField(max_length=100, blank=True, null=True)
@@ -59,7 +59,7 @@ class Workbook(Core):
 
 
 class Chapter(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=False, null=False)
     slug = models.SlugField(max_length=200, default='', blank=True)
     content = models.TextField(blank=True)
     workbook = models.ForeignKey(Workbook, on_delete=models.CASCADE, null=False)
