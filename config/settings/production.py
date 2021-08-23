@@ -27,3 +27,36 @@ AWS_ACCESS_KEY_ID = "AKIAYDJD6YIFEEELVONY"
 AWS_SECRET_ACCESS_KEY = "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"
 AWS_STORAGE_BUCKET_NAME = "workbook-factory-dev"
 AWS_S3_REGION_NAME = "us-east-2"
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                       'pathname=%(pathname)s lineno=%(lineno)s ' +
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'testlogger': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        }
+    }
+}
