@@ -22,3 +22,8 @@ EMAIL_HOST_USER = 'dave@purebluedesign.com'
 EMAIL_HOST_PASSWORD = 'euzzvdprkcggqfnj'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True 
+
+AWS_ACCESS_KEY_ID = "AKIAYDJD6YIFEEELVONY"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "workbook-factory-dev"
+AWS_S3_REGION_NAME = "us-east-2"
