@@ -12,7 +12,7 @@ import socket
 
 hostname = socket.gethostname()
 
-if hostname == 'dave':
+if hostname == 'Tuans-MacBook-Pro.local':
     from .local import *
 else:
     from .production import *
