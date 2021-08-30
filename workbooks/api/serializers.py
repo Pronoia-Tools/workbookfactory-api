@@ -40,4 +40,26 @@ class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     class Meta:
         model = Workbook
-        fields = ['id', 'owner', 'title', 'tags', 'price', 'edition', 'language', 'description', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'chapter_set', 'published', 'editable']
+        fields = [
+            'id', 
+            'owner', 
+            'title', 
+            'tags', 
+            'price', 
+            'edition', 
+            'language', 
+            'description',
+            'slug',
+            'front_matter',
+            'back_matter',
+            'content',
+            'archived',
+            'created',
+            'modified',
+            'published',
+            'editable',
+            'cover_image',
+            'chapter_set',
+            'cached_stripe_product_id',
+            'cached_stripe_price_id'
+        ]

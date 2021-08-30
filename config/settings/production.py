@@ -8,9 +8,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'Optional default value')
 
 SESSION_CACHE_ALIAS = "default"
 
-DEBUG = True
-
-ADMINS = [('Dave Merwin', 'dave@purebluedesign.com'), ]
+ADMINS = [('Dave Merwin', 'dave@purebluedesign.com'), ('Tuan Anh', 'anhtnt09@gmail.com')]
 DEFAULT_FROM_EMAIL = 'dave@purebluedesign.com'
 
 # EMAIL_HOST = 'nameserver1.bluehost.com'
