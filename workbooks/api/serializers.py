@@ -58,15 +58,13 @@ class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):
             'published',
             'editable',
             'cover_image',
-            # 'cover_image_thumbnail_url',
-            # 'cover_image_card_url',
             'chapter_set',
+            'cached_stripe_product_id',
+            'cached_stripe_price_id'
         ]
 
-    # def get_cover_image_thumbnail(self, obj):
-    #     if obj.cover_image_thumbnail:
-    #         return obj.cover_image_thumbnail.url
+    # def stripe_price_id(self):
+    #     return self.stripe_price.id
 
-    # def get_cover_image_card(self, obj):
-    #     if obj.cover_image_thumbnail:
-    #         return obj.cover_image_thumbnail.url
+    # def stripe_product_id(self):
+    #     return self.stripe_product_id.id

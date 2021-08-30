@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
     'django_countries',
     'djmoney',
+    'djstripe',
 
     'config',
     # 'cms',
@@ -203,6 +204,14 @@ WAGTAIL_SITE_NAME = 'Workbook Factory'
 WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+# Stripe Configuration
+STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "sk_test_51JTnBaIUSxddDY4OCkqJgLEVxSJIIbRvtZ6j5n34FLdj2LEqdNJdhoCOCH0YPG2UeNJMVJV8bhWPg0ZsgspTlDFI006I0NRhvi")
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "sk_test_51JTnBaIUSxddDY4OCkqJgLEVxSJIIbRvtZ6j5n34FLdj2LEqdNJdhoCOCH0YPG2UeNJMVJV8bhWPg0ZsgspTlDFI006I0NRhvi")
+STRIPE_LIVE_MODE = False  # Change to True in production
+DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"  # Get it from the section in the Stripe dashboard where you added the webhook endpoint
+DJSTRIPE_USE_NATIVE_JSONFIELD = True  # We recommend setting to True for new installations
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"  # Set to `"id"` for all new 2.4+ installations
 
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())

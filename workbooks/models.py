@@ -1,8 +1,10 @@
 import os
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.utils.text import slugify
 from django_countries.fields import CountryField
 from djmoney.models.fields import MoneyField
+import djstripe
 from taggit.managers import TaggableManager
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, Transpose
@@ -24,20 +26,8 @@ class Workbook(Core):
     price = MoneyField(max_digits=10, decimal_places=2, default_currency='USD', null=True)
     tags = TaggableManager()
     cover_image = models.ImageField(upload_to="images", null=True)
-    # cover_image_thumbnail = ImageSpecField(source='cover_image',
-    #                                        processors=[
-    #                                            Transpose(),
-    #                                            ResizeToFill(150, 150)
-    #                                         ],
-    #                                        format='JPEG',
-    #                                        options={'quality': 40})
-    # cover_image_card = ImageSpecField(source='cover_image',
-    #                                         processors=[
-    #                                             Transpose(),
-    #                                             ResizeToFill(512, 512)
-    #                                         ],
-    #                                         format='JPEG',
-    #                                         options={'quality': 60})
+    stripe_product = models.ForeignKey(djstripe.models.Product, on_delete=CASCADE, null=True)
+    stripe_price = models.ForeignKey(djstripe.models.Price, on_delete=CASCADE, null=True)
     
     def save(self, *args, **kwargs):
         value = self.title
@@ -57,6 +47,13 @@ class Workbook(Core):
     def __str__(self):
         return self.title
 
+    @cached_property
+    def cached_stripe_product_id(self):
+        return self.stripe_product.id
+
+    @cached_property
+    def cached_stripe_price_id(self):
+        return self.stripe_price.id
 
 class Chapter(models.Model):
     title = models.CharField(max_length=200, blank=False, null=False)
