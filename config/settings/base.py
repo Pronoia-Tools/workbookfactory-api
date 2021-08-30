@@ -203,7 +203,7 @@ WAGTAIL_SITE_NAME = 'Workbook Factory'
 # PASSWORD_REQUIRED_TEMPLATE = 'account/login.html'
 WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Stripe Configuration
 STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "sk_test_51JTnBaIUSxddDY4OCkqJgLEVxSJIIbRvtZ6j5n34FLdj2LEqdNJdhoCOCH0YPG2UeNJMVJV8bhWPg0ZsgspTlDFI006I0NRhvi")
