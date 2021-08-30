@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from djmoney.contrib.django_rest_framework import MoneyField
-from taggit.serializers import (TagListSerializerField,
-                                TaggitSerializer)
+from taggit_serializer.serializers import (TagListSerializerField,
+                                           TaggitSerializer)
 from users.api.serializers import AccountSerializer
 from ..models import Workbook, Chapter, Question, Answer
 
@@ -24,12 +24,9 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class ChapterSerializer(serializers.ModelSerializer):
-    owner = AccountSerializer(read_only=True)
-    question_set = QuestionSerializer(many=True, required=False)
-
     class Meta:
         model = Chapter
-        fields = ['id', 'owner', 'title', 'slug', 'front_matter', 'back_matter', 'content', 'archived', 'created', 'modified', 'question_set']
+        fields = ['id', 'title', 'content', 'workbook_id']
 
 
 class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):
@@ -37,6 +34,8 @@ class WorkbookSerializer(TaggitSerializer, serializers.ModelSerializer):
     owner = AccountSerializer(read_only=True)
     chapter_set = ChapterSerializer(many=True, required=False)
     price = MoneyField(max_digits=10, decimal_places=2)
+    # cover_image_thumbnail_url = serializers.SerializerMethodField('get_cover_image_thumbnail')
+    # cover_image_card_url = serializers.SerializerMethodField('get_cover_image_card')
 
     class Meta:
         model = Workbook

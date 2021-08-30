@@ -6,7 +6,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.base import TemplateView
 from django.conf import settings
 
-from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 from dj_rest_auth.registration.views import VerifyEmailView
 from wagtail.admin import urls as wagtailadmin_urls
@@ -17,6 +16,7 @@ from orders.api.views import OrderViewSet, OrderItemViewSet
 from coaches.api.views import CoachViewSet
 from media.api.views import OwnerEmbedViewSet, OwnerImageViewSet
 from libraries.api.views import LibraryViewSet
+from rest_framework_nested import routers
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'accounts', AccountViewSet, basename="accounts")
@@ -25,7 +25,6 @@ router.register(r'public/workbooks', PublicWorkbookViewSet, basename="public-wor
 router.register(r'public/chapters', PublicChapterViewSet, basename="public-chapters")
 router.register(r'public/questions', PublicQuestionViewSet, basename="public-questions")
 router.register(r'workbooks', OwnerWorkbookViewSet, basename="workbooks")
-router.register(r'chapters', OwnerChapterViewSet, basename="chapters")
 router.register(r'questions', OwnerQuestionViewSet, basename="questions")
 router.register(r'answers', OwnerAnswerViewSet, basename="answers")
 router.register(r'orders', OrderViewSet, basename="orders")
@@ -35,12 +34,14 @@ router.register(r'images', OwnerImageViewSet, basename="images")
 router.register(r'embeds', OwnerEmbedViewSet, basename="embeds")
 router.register(r'libraries', LibraryViewSet, basename="libraries")
 
+chapters_router = routers.NestedSimpleRouter(router, r'workbooks', lookup="workbook")
+chapters_router.register(r'chapters', OwnerChapterViewSet, basename='workbook-chapters')
+
 urlpatterns = [
     path("workbook-factory/admin/docs/", include("django.contrib.admindocs.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
     path("workbook-factory/cms/", include(wagtailadmin_urls))
 ]
-
 
 urlpatterns += [
 
@@ -58,8 +59,9 @@ urlpatterns += [
 
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 
+    path('api/v1/', include(chapters_router.urls)),
     path('api/v1/', include(router.urls)),
-    
+
     path("", TemplateView.as_view(template_name="base.html")),
 ]
 
